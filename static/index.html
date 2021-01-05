@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
           <div class="col-sm">
-            <input class="form-control" id="windspeedValue" type="number" placeholder="Enter wind speed here please.." ><br/>
+            <input class="form-control" id="windspeedValue" type="number" min="0" max="24.4" placeholder="Enter wind speed here please.." ><br/>
           </div>
         </div>
         <div class="row">
@@ -81,8 +81,8 @@
             // pull the value entered on the form above using the id
             var windspeed = document.getElementById("windspeedValue").value;
             console.log(windspeed)
-            $.getJSON("/api/model1" + encodeURI(windspeed), function(data) {
-                $('#output').val(data.value);
+            $.getJSON("/api/model1/" + encodeURI(windspeed), function(data) {
+                $('#output1').val(data.value);
                 console.log(data)
             });
         });
@@ -94,8 +94,8 @@
             console.log(windspeed)
 
 
-            $.getJSON("/api/model2" + encodeURI(windspeed), function(data) {
-                $('#output').val(data.value);
+            $.getJSON("/api/model2/" + encodeURI(windspeed), function(data) {
+                $('#output2').val(data.value);
             });
         });
     </script>

@@ -1,7 +1,11 @@
-# flask for web app.
-from flask import Flask, url_for, request, redirect, abort, jsonify, render_template
+from flask import Flask, url_for, redirect, jsonify, render_template
 # numpy for numerical work.
 import numpy as np
+
+# to import the models saved in the notebook
+import joblib
+
+model_poly3 = joblib.load('model_poly3.joblib')
 
 import tensorflow.keras as kr
 
@@ -21,6 +25,8 @@ def predict_power(speed):
     #return model.predict(speed)
     return(speed*100)
 
+def predict_power_poly3(speed):
+  
 
 
 # Create a new web app.
@@ -35,13 +41,17 @@ def home():
 
   # Add model1 prediction route.
 @app.route('/api/model1/<int:speed>')
-def power(speed):
+def power1(speed):
   #return predict_power(speed)
   
   return {"value": predict_power(speed)}
 
 # Add model2 prediction route.
-@app.route('/api/model2<int:speed>')
-def uniform():
-  return {"value": np.random.uniform()}
+@app.route('/api/model2/<int:speed>')
+def power2(speed):
+  #return predict_power(speed)
+  
+  return {"value": predict_power(speed)}
+  
+
 

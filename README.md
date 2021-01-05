@@ -118,3 +118,20 @@ And verified the install using
 
 If I can't get docker working properly with tensorflow then I'll have to just use flask in a virtual environment.
 I'll try again tomorrow loading the requirements.txt file
+
+
+---
+
+Now when I run the flask app I get the message below about tensorflow but it seems to be ok.
+
+
+2021-01-05 18:52:10.358879: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2021-01-05 18:52:10.358874: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2021-01-05 18:52:10.359778: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2021-01-05 18:52:10.359778: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+
+---
+
+Had to pip install joblib  library and added to requirements.txt
