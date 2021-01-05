@@ -14,19 +14,19 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h2>Index.html!</h2>
+    <h2>Predicting power from wind speeds</h2>
     <div class="container">
         <div class="row">
           <div class="col-sm">
-            <input class="form-control" id="output" type="text" placeholder="Random number here.." readonly>
+            <input class="form-control" id="output" type="text" placeholder="Enter wind speed here please.." readonly>
           </div>
         </div>
         <div class="row">
           <div class="col-sm">
-            <button type="button" class="btn btn-success" id="uniform-button">Uniform</button>
+            <button type="button" class="btn btn-success" id="uniform-button">Model1</button>
           </div>
           <div class="col-sm">
-            <button type="button" class="btn btn-primary" id="normal-button">Normal</button>
+            <button type="button" class="btn btn-primary" id="normal-button">Model2</button>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
         // Adapted from stack overflow posts.
         $("#normal-button").click(function(e) {
             e.preventDefault();
-            $.getJSON("/api/normal", function(data) {
+            $.getJSON("/prediction", function(data) {
                 $('#output').val(data.value);
             });
         });
