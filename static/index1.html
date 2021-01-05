@@ -1,0 +1,123 @@
+<!doctype html>
+
+<!-- Copied and adapted from Bootstrap homepage. -->
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>Index</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="home.html">Wind Power Prediction</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+              
+        
+              
+              </ul>
+
+              <ul class="navbar-nav ml-auto" >
+
+          
+
+              </ul>
+               
+            </div>
+          </div>
+        </nav>
+      </div>
+
+<div class="container">
+
+
+      <div class="jumbotron">
+        <h2>Predicting power from wind speeds</h2>
+      </div>
+  
+
+    
+    <div class="container">
+        
+            <input class="form-control" id="windspeedForm" class="text-center" >
+            <p>Enter a wind speed value below to get a predicted power value.</p>
+            <input type="hidden" name="id"/>
+            <p><span><button type="button" class="btn btn-info" id="model1Buttom" onclick="getModel1Prediction()">Model1</button></span>
+            <input type="text" name="windspeed"/>
+              
+              
+              <span><button type="button" class="btn btn-info" id="model2Button" onclick="getModel2Prediction()">Model2</button></span></p>
+
+    
+    </div>
+
+    </div>
+
+    <script>
+  
+  // get the value entered by the user on the form
+  function getValueFromForm(){
+    var form = document.getElementById('windspeedForm')
+    var windspeed = {}
+    windspeed.id = form.querySelector('input[name="id"]').value
+   
+    windspeed.value = form.querySelector('input[name="windspeed"]').value
+    
+    console.log(JSON.stringify(windspeed.value))
+    return windspeed.value
+    }
+
+    function getModel1Prediction(windspeed){
+            host = window.location.origin
+            wind = getValueFromForm().value
+            $.ajax({
+                "url": host+"/model1/" + encodeURI(wind),
+                "method":"GET",
+                "data":"",
+                "dataType": "JSON",
+                "success":function(result){
+                    console.log(result);
+                    // 
+                    //addTagToTable(result)
+                                        
+                },
+                "error":function(xhr,status,error){
+                    console.log("error: "+status+" msg:"+error);
+                }
+            });
+
+        }
+
+
+
+        // Adapted from stack overflow posts.
+        $("#normal-button").click(function(e) {
+            e.preventDefault();
+            $.getJSON("/prediction", function(data) {
+                $('#output').val(data.value);
+            });
+        });
+        $("#uniform-button").click(function(e) {
+            e.preventDefault();
+            $.getJSON("/api/uniform", function(data) {
+                $('#output').val(data.value);
+            });
+        });
+    </script>
+  </body>
+</html>

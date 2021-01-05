@@ -1,6 +1,7 @@
 <!doctype html>
 
 <!-- Copied and adapted from Bootstrap homepage. -->
+<!-- modified from the random-app page used in lectures-->
 
 <html lang="en">
   <head>
@@ -11,26 +12,53 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Machine Learning Project</title>
   </head>
   <body>
-    <h2>Predicting power from wind speeds</h2>
+    <div class="container">
+    <h3>Predicting power from wind speeds</h3>
     <div class="container">
         <div class="row">
           <div class="col-sm">
-            <input class="form-control" id="output" type="text" placeholder="Enter wind speed here please.." readonly>
+            <input class="form-control" id="windspeedValue" type="number" placeholder="Enter wind speed here please.." ><br/>
           </div>
         </div>
         <div class="row">
           <div class="col-sm">
-            <button type="button" class="btn btn-success" id="uniform-button">Model1</button>
+            <button type="button" class="btn btn-info" id="model1-button">Model1</button>
           </div>
           <div class="col-sm">
-            <button type="button" class="btn btn-primary" id="normal-button">Model2</button>
+            <button type="button" class="btn btn-info" id="model2-button">Model2</button>
           </div>
         </div>
       </div>
 
+    <div class="container">
+
+        <h3> The predictions</h3><br/>
+
+        <div class="row">
+            <div class="col-sm">
+              <label for="output1">Power Output1</label>
+              <input class="form-control" id="output1" type="text" placeholder="prediction from model 1 here.." ><br/>
+            </div>
+          </div>
+
+          
+          <div class="row">
+            <div class="col-sm">
+                <label for="output2">Power Output2</label>
+                <input class="form-control" id="output2" type="text" placeholder="prediction from model 2 here.." ><br/>
+              </div>
+
+          
+          </div>
+
+
+
+    </div>
+
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -47,15 +75,26 @@
 
     <script>
         // Adapted from stack overflow posts.
-        $("#normal-button").click(function(e) {
+        $("#model1-button").click(function(e) {
             e.preventDefault();
-            $.getJSON("/prediction", function(data) {
+
+            // pull the value entered on the form above using the id
+            var windspeed = document.getElementById("windspeedValue").value;
+            console.log(windspeed)
+            $.getJSON("/api/model1" + encodeURI(windspeed), function(data) {
                 $('#output').val(data.value);
+                console.log(data)
             });
         });
-        $("#uniform-button").click(function(e) {
+        $("#model2-button").click(function(e) {
             e.preventDefault();
-            $.getJSON("/api/uniform", function(data) {
+
+            // pull the value entered on the form above using the id
+            var windspeed = document.getElementById("windspeedValue").value;
+            console.log(windspeed)
+
+
+            $.getJSON("/api/model2" + encodeURI(windspeed), function(data) {
                 $('#output').val(data.value);
             });
         });
