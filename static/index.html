@@ -20,15 +20,15 @@
     <div class="container">
         <div class="row">
           <div class="col-sm">
-            <input class="form-control" id="windspeedValue" type="number" min="0" max="24.4" placeholder="Enter wind speed here please.." ><br/>
+            <input class="form-control" id="windspeedValue" type="number" min="0" max="24.4" placeholder="Please enter a value here between zero and 24.4" required><br/>
           </div>
         </div>
         <div class="row">
           <div class="col-sm">
-            <button type="button" class="btn btn-info" id="model1-button">Model1</button>
+            <button type="button" class="btn btn-info" id="model1-button">Polynomial3</button>
           </div>
           <div class="col-sm">
-            <button type="button" class="btn btn-info" id="model2-button">Model2</button>
+            <button type="button" class="btn btn-info" id="model2-button">Neural Network</button>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
 
         <div class="row">
             <div class="col-sm">
-              <label for="output1">Power Output1</label>
+              <label for="output1">Power Output from Polynomial 3rd order</label>
               <input class="form-control" id="output1" type="text" placeholder="prediction from model 1 here.." ><br/>
             </div>
           </div>
@@ -47,7 +47,7 @@
           
           <div class="row">
             <div class="col-sm">
-                <label for="output2">Power Output2</label>
+                <label for="output2">Power Output from Neural Network model</label>
                 <input class="form-control" id="output2" type="text" placeholder="prediction from model 2 here.." ><br/>
               </div>
 
@@ -80,12 +80,14 @@
 
             // pull the value entered on the form above using the id
             var windspeed = document.getElementById("windspeedValue").value;
-            console.log(windspeed)
-            $.getJSON("/api/model1/" + encodeURI(windspeed), function(data) {
+            console.log("windspeed value:",windspeed)
+            $.getJSON("/api/polynomial3/" + encodeURI(windspeed), function(data) {
                 $('#output1').val(data.value);
-                console.log(data)
+                console.log("returned from polynmoial3/",data)
             });
         });
+
+
         $("#model2-button").click(function(e) {
             e.preventDefault();
 
@@ -93,8 +95,7 @@
             var windspeed = document.getElementById("windspeedValue").value;
             console.log(windspeed)
 
-
-            $.getJSON("/api/model2/" + encodeURI(windspeed), function(data) {
+            $.getJSON("/api/neuralnetwork1/" + encodeURI(windspeed), function(data) {
                 $('#output2').val(data.value);
             });
         });
