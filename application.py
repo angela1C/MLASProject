@@ -29,7 +29,7 @@ def home():
 
 # Add neural network1 prediction route.
 @app.route('/api/nn1/<int:speed>')
-
+@app.route('/api/nn1/<float:speed>')
 def predict_power_NN_model1(speed):
   #speed = np.array(speed)
 
@@ -41,6 +41,7 @@ def predict_power_NN_model1(speed):
 
 # Add neural network2 prediction route.
 @app.route('/api/nn2/<int:speed>')
+@app.route('/api/nn2/<float:speed>')
 def predict_power_NN_model2(speed):
   if speed >24.4:
     return {"value": 0}
@@ -53,6 +54,7 @@ def predict_power_NN_model2(speed):
 # Add polynomial3 prediction route.
 # need to put upper and lower limits on this to stop negative values
 @app.route('/api/poly3/<int:speed>')
+@app.route('/api/poly3/<float:speed>')
 def predict_power_poly3_model(speed):
 
   # manually transforming the inputs for now
@@ -68,6 +70,7 @@ def predict_power_poly3_model(speed):
 
 # add route for the 4th order polynomial
 @app.route('/api/poly4/<int:speed>')
+@app.route('/api/poly4/<float:speed>')
 def predict_power_poly4_model(speed):
   if speed >24.4:
     return {"value": str(0)}
@@ -80,6 +83,7 @@ def predict_power_poly4_model(speed):
 # Here I will add a route to predict a range of values for each wind speed value entered
 # a minimum value and a maximum value
 @app.route('/api/range/<int:speed>')
+@app.route('/api/range/<float:speed>')
 def predict_power_range(speed):
   # Turbine will always be powered off at speed values greater than 24.4
   if speed >24.4:
@@ -90,7 +94,7 @@ def predict_power_range(speed):
   if speed ==0:
     return({"min":str(0), "max":str(0)})
 
-  elif speed >0 and speed <=24.4:
+  elif speed >0 and speed <24.5:
     # polynomial model is predicting negative values
     poly3pred = max(0,model_poly3.predict([[speed, speed**2, speed**3]])[0][0])
 
