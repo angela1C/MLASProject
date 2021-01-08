@@ -78,7 +78,8 @@ Once this is running you can access the app on your browser at the local host.
 - `docker kill <container-id>` to kill the container
 - `docker rm <container-id>` to remove a container.
 
-Note that Tensorflow may cause some problems when using docker. If you do not have docker installed you can alternatively run the Flask application program on your local machine using the local host, First create a virtual environment and install the packages required into the virtual environment using the `requirements.txt` file. Then navigate to the local host on the browser to run the application where you will interact with the html page.
+Note that Tensorflow may cause some problems when using docker. If you do not have docker installed you can alternatively run the Flask application program on your local machine using the local host.
+First create a virtual environment and install the packages required into the virtual environment using the `requirements.txt` file. Then navigate to the local host on the browser to run the application where you will interact with the html page.
 The webpage `index.html` is saved in the `static` folder.
 
 ### To run Flask application on Linux / Mac
