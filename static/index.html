@@ -15,48 +15,64 @@
     <title>Machine Learning Project</title>
   </head>
   <body>
+  <div class="container">  
+
     <div class="container">
-    <h3>Predicting power from wind speeds</h3>
+     <div class="jumbotron text-center">
+     <h3>Wind turbine power output</h3> 
+  
+    <p>
+      This application uses machine learning algorithms to make predictions  of wind turbine power output for a given wind speed value.<br/><br/>
+      Note that the wind turbines are powered off for safety reasons when the wind speeds exceed 24.4 metres per second.
+
+    </p>
+  </div>
+
+
     <div class="container">
-        <div class="row">
+        <div class="row" justify-content-center>
           <div class="col-sm">
-            <input class="form-control" id="windspeedValue" type="number" name="windspeed" min="0" max="26" placeholder="Please enter a value here between zero and 24.4" required><br/>
-            <input class="form-control" id="windspeedRange" type="range" name="windspeed" min="0" max="26" step="1" placeholder="Please enter a value here between zero and 24.4" required><br/>
+            <input class="form-control" id="windspeedValue" type="number" name="windspeed" min="0" max="26" placeholder="Enter wind speed here" required>
+  
+            <small id="numberHelp" class="form-text text-muted">
+              The wind speed value entered must be in the range of 0 to 25.
+            </small><br/>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm">
-            <button type="button" class="btn btn-info" id="predict-button">Predict Power Output range</button>
-          </div>
-          <div class="col-sm">
-            <button type="button" class="btn btn-info" id="model2-button">Neural Network</button>
-          </div>
+        <div class="container">
+        <div class="row" justify-content-center>
+         
+           <button type="button" class="btn btn-info btn-lg btn-block" id="predict-button" justify-content-center>Predict Power Output range</button>
+          
+          
         </div>
+      </div>
       </div>
 
     <div class="container">
 
-        <h3> The predictions:</h3><br/>
+      
 
-        <div class="row">
-            <div class="col-sm">
-              <label for="output1">Minimum expected power value</label>
-              <input class="form-control" id="minvalue" type="number" placeholder="0" size="10" disabled >
-              <label for="output2">Maximum expected power value</label>
-              <input class="form-control" id="maxvalue" type="text" placeholder="max" size="10" disabled><br/>
+        <div class="form-row" justify-content-center>
+            <div class="col-sm text-center">
+              <br/>
+              <label for="output1"></label><br/>
+              <input class="form-control" id="minvalue" type="text"  size="10" placeholder="minimum power output" readonly >
+              <label for="output2"></label>
+              <input class="form-control" id="maxvalue" type="text"  size="10" placeholder="maximum possible power output"readonly><br/>
               
               <br/>
             </div>
           </div>
 
           
-         
-
-
-
     </div>
 
+ 
+
     </div>
+  </div>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -77,12 +93,14 @@
             console.log(windspeed)
 
             $.getJSON("/api/range/" + encodeURI(windspeed), function(data) {
+              // get the minimum value for the power output at this wind speed
                 $('#minvalue').val(data.min);
 
 
             });
 
             $.getJSON("/api/range/" + encodeURI(windspeed), function(data) {
+              // get the maximum possible value at this wind speed
                 $('#maxvalue').val(data.max);
             });
 
@@ -90,31 +108,9 @@
         });
 
 
-        // Adapted from stack overflow posts.
-        $("#model3-button").click(function(e) {
-            e.preventDefault();
-
-            // pull the value entered on the form above using the id
-            var windspeed = document.getElementById("windspeedValue").value;
-            console.log("windspeed value:",windspeed)
-            $.getJSON("/api/polynomial3/" + encodeURI(windspeed), function(data) {
-                $('#output1').val(data.value);
-                console.log("returned from polynomial3/",data)
-            });
-        });
+        
 
 
-        $("#model2-button").click(function(e) {
-            e.preventDefault();
-
-            // pull the value entered on the form above using the id
-            var windspeed = document.getElementById("windspeedValue").value;
-            console.log(windspeed)
-
-            $.getJSON("/api/neuralnetwork1/" + encodeURI(windspeed), function(data) {
-                $('#output2').val(data.value);
-            });
-        });
     </script>
   </body>
 </html>
