@@ -12,12 +12,12 @@ A web service must be created that uses machine learning to make predictions bas
 
 - A Python script `application.py` that runs a web service based on the models developed in the notebook.
 
-- A Dockerfile to build and run the web service in a container.
+- A Dockerfile to tell docker how to build and run the web service application in a container.
 - This README file.
 - A requirements.txt file containing the python packages required to run the web service.
 - A `models` folder containing the machine learning models developed in the notebook.
 - A `static` folder containing the `index.html` page for the web service application.
-- A .dockerignore file
+- A .dockerignore file that tells docker to ignore certain files in certain circumstances.
 - A .gitignore file
 - The dataset has been saved as `df.csv` but it also available [here](https://raw.githubusercontent.com/ianmcloughlin/2020A-machstat-project/master/dataset/powerproduction.csv) at [github.com/ianmcloughlin](https://github.com/ianmcloughlin)
 
@@ -49,27 +49,32 @@ The following Python packages were used for this project:
 - Keras Tensorflow. An open source library for training and developing machine learning models at https://www.tensorflow.org/guide/keras/sequential_model
 
 These packages can be installed if necessary on the command line using pip install <package-name>. Most of them come with the Anaconda distribution of Python 3. 
+    
+---    
+    
+### Web Service Application 
 
----
-
+The `Docker` file included in this repository contains the instructions to build a docker image.
+    
 The following instructions can be used to get the web server up and running:
 
 - Clone the repository to your local machine
 
 - Check if docker is installed on your machine using `docker --version`
-If not you will need to install docker. Note that this may take some time.
+If not you will need to install docker. Note that this may take some time. Go to https://www.docker.com
 
 - `docker build -t windpower-app . `
-This will build a docker image in your repository, in the current folder (`.`)
+This will build a docker image in your repository in the current folder (`.`)
 The `-t` flag assigns a tag name to the application, otherwise the container id is used.
 
 - `docker run -d -p 5000:5000 windpower-app`
 Once this is running you can access the app on your browser at the local host.
 
-- `docker image ls` will list the images. 
+- `docker image ls` will list the images in the container
 
-- `docker container ls` will list the container ids (if you need to kill the container.)
-
+- `docker container ls` will list the container ids (if you need to kill the container)
+- `docker kill <container-id>` to kill the container
+- `docker rm <container-id>` to remove a container.
 
 Note that Tensorflow may cause some problems when using docker. For this reason you can alternatively create a virtual environment and install the packages required into the virtual environment. Then navigate to the local host on the browser to run the app.
 
@@ -100,5 +105,7 @@ The same as above but replace:
 
 All references used for developing the machine learning models are documented at the end of the `wind_project.ipynb` jupyter notebook. All quotations are numbered. Other resources were used in researching the project which are also listed in the reference section.
 
-
+- https://www.docker.com/resources/what-container
+- https://flask.palletsprojects.com/en/1.1.x/
+- https://pypi.org/ for finding and installing Python packages   
 
