@@ -1,26 +1,25 @@
-# MLASProject
+# Machine Learning and Statistics Project
 
 This repository contains my submission for the Machine Learning and Statistics Project as part of the requirement for the for the Machine Learning and Statistics module at GMIT as part of the Higher Diploma in Computing and Data Analytics programme.
 
 ## Project Instructions
 The full project instructions are contained in the `Project_Instructions` pdf file.
 
-A web service must be created that uses machine learning to make predictions based on the data set `powerproduction` available on Moodle. The goal is to produce a model that accurately predicts wind turbine power output from wind speed values, as in the data set. The web service will respond with predicted power values based on speed values sent as HTTP requests. 
+Create a web service that uses machine learning to make predictions based on a `powerproduction` data set. The goal of the project is to produce a model that accurately predicts wind turbine power output from wind speed values, as in the data set. The web service will respond with predicted power values based on speed values sent as HTTP requests. 
 
 ## Repository Contents
-- A Jupyter notebook `wind_project.ipynb` that trains a model using the data set, explains the model and gives an analysis of its accuracy.
+- A Jupyter notebook `wind_project.ipynb` that trains a model using the data set, explains the model and gives an analysis of its accuracy. This notebook can be easily viewed using Jupyter's [nbviewer](https://nbviewer.jupyter.org/) which renders the notebook [here](https://nbviewer.jupyter.org/github/angela1C/MLASProject/blob/main/wind_project.ipynb).
 
 - A Python script `application.py` that runs a web service based on the models developed in the notebook.
 
 - A Dockerfile to tell docker how to build and run the web service application in a container.
-- This README file.
-- A requirements.txt file containing the python packages required to run the web service.
+- A requirements.txt file containing the Python packages required to run the web service.
 - A `models` folder containing the machine learning models developed in the notebook. 
-    * The neural network models are saved with the `.h5` extension. 
-    * The polynomial regression models are saved with the `.pkl` and `.joblib` extensions. 
+    * The Neural Network models are saved with the `.h5` extension. 
+    * The Polynomial Regression models are saved with the `.pkl` and `.joblib` extensions. 
 - A `static` folder containing the `index.html` page for the web service application.
-- A .dockerignore file that tells docker to ignore certain files in certain circumstances.
-- A .gitignore file
+- A `.dockerignore` file that tells docker to ignore certain files in certain circumstances.
+- A `.gitignore` file
 - The dataset has been saved as `df.csv` but it also available [here](https://raw.githubusercontent.com/ianmcloughlin/2020A-machstat-project/master/dataset/powerproduction.csv) at [github.com/ianmcloughlin](https://github.com/ianmcloughlin)
 
 ### How to download the repository
@@ -33,7 +32,7 @@ Go to the URL for the repository at https://github.com/angela1C/Mlasproject and 
 
 Python 3 was used to develop this project and is needed to run the code in the notebook. Python 3 can be downloaded from the official Python website at https://www.python.org/downloads/. It can also be downloaded using the Anaconda Python distribution at https://www.anaconda.com/distribution/.
 
-The Jupyter Notebook `wind_project.ipynb`  can be viewed directly in this GitHub repository in a browser without Python 3 being installed. On occasion the Jupyter Notebook may not render correctly in which case the URL https://github.com/angela1C/MLASProject/blob/main/wind_project.ipynb can be copied and pasted in to the Jupyter nbviewer at https://nbviewer.jupyter.org. This will render a static version of the notebook in the browser.
+The Jupyter Notebook `wind_project.ipynb`  can be viewed directly in this GitHub repository in a browser without Python 3 being installed. On occasion the Jupyter Notebook may not render correctly in which case the URL https://github.com/angela1C/MLASProject/blob/main/wind_project.ipynb can be copied and pasted in to the Jupyter nbviewer at https://nbviewer.jupyter.org or by clicking this [link](https://nbviewer.jupyter.org/github/angela1C/MLASProject/blob/main/wind_project.ipynb). This will render a static version of the notebook in the browser. 
 If the repository is downloaded it can be run locally by navigating to the folder and entering the command `jupyter lab` or `jupyter notebook` on the command line. This will open Jupyter in the browser. The `wind_project.ipynb` notebook can be opened then within the Jupyter session. Once opened you can can select Restart and Run All from the Kernel menu.
 
 The following Python packages were used for this project:
@@ -79,7 +78,7 @@ Once this is running you can access the app on your browser at the local host.
 - `docker rm <container-id>` to remove a container.
 
 Note that Tensorflow may cause some problems when using docker. If you do not have docker installed you can alternatively run the Flask application program on your local machine using the local host.
-First create a virtual environment and install the packages required into the virtual environment using the `requirements.txt` file. Then navigate to the local host on the browser to run the application where you will interact with the html page.
+First create a virtual environment and install the packages required into the virtual environment using the `requirements.txt` file. Then navigate to the local host on the browser to run the application where you can interact with the html page.
 The webpage `index.html` is saved in the `static` folder.
 
 ### To run Flask application on Linux / Mac
@@ -108,7 +107,7 @@ Replace:
 - Note that for wind speeds above 24.4 metres per second, the turbines are switched for safety reasons.
 ### References
 
-All references used for developing the machine learning models are documented at the end of the `wind_project.ipynb` jupyter notebook. All quotations are numbered. Other resources were used in researching the project which are also listed in the reference section.
+All references used for developing the machine learning models are documented at the end of the `wind_project.ipynb` Jupyter notebook. All quotations are numbered. Other resources were used in researching the project which are also listed in the reference section.
 
 - [Docker](https://www.docker.com/resources/what-container)
 - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
